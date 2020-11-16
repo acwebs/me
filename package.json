@@ -9,8 +9,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "predeploy" :"npm run-script build",
-        "deploy":"gh-pages -d src"
+        "predeploy": "npm run-script build",
+        "deploy": "gh-pages -d src"
     },
     "author": "",
     "license": "UNLICENSED",
