@@ -13,7 +13,6 @@ import {
     Icon,
     Form,
     Footer,
-    Content,
     Button
 } from 'react-bulma-components';
 const { Input, Field, Control, Label, Textarea } = Form;
@@ -24,13 +23,25 @@ class App extends React.Component {
         super(props);
         this.state = this.getInicialState();
     }
-    state = { active: false }
+    state = {
+        active: false,
+        name: '',
+        email: '',
+        message: ''
+    }
 
     getInicialState = () => {
         const inicialState = {
             active: false
         };
         return inicialState;
+    };
+
+    //setInputs
+    handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({ [name]: value });
     };
 
     toggleActive = () => {
@@ -49,7 +60,7 @@ class App extends React.Component {
                             <a className="is-vertically-centered active" href="https://acwebs.github.io/me">
                                 <img src="favicon-192x192.png" alt="logo" className="logo" />
                             </a>
-                            <Navbar.Burger/>
+                            <Navbar.Burger />
                         </Navbar.Brand>
                         <Navbar.Menu>
                             <Navbar.Container position="end">
@@ -181,7 +192,7 @@ class App extends React.Component {
                                         <img className="project-thumb" alt="" src="img/flexvertical.png" />
                                         <figcaption>
                                             <h1 className="title is-size-5 is-size-4-widescreen">Web tracking app</h1>
-                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/portfolio" target="_blank">
+                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/me" target="_blank" rel="noreferrer">
                                                 <span>Visit Website</span>
                                                 <span className="icon">
                                                     <svg className="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
@@ -199,7 +210,7 @@ class App extends React.Component {
                                         <img className="project-thumb" alt="" src="img/ifix2.png" width="432" height="288" />
                                         <figcaption>
                                             <h1 className="title is-size-5 is-size-4-widescreen">Website to schedule fixing of your phone</h1>
-                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/portfolio" target="_blank">
+                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/me" target="_blank" rel="noreferrer">
                                                 <span>Visit Website</span>
                                                 <span className="icon">
                                                     <svg className="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
@@ -217,7 +228,7 @@ class App extends React.Component {
                                         <img className="project-thumb" alt="" src="img/mobileapp.png" />
                                         <figcaption>
                                             <h1 className="title is-size-5 is-size-4-widescreen">Mobile app to read tickets and sync it with server</h1>
-                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/portfolio" target="_blank">
+                                            <a className="button is-primary is-outlined is-rounded" href="https://andrescordobam.github.io/me" target="_blank" rel="noreferrer">
                                                 <span>Visit Website</span>
                                                 <span className="icon">
                                                     <svg className="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
@@ -249,7 +260,12 @@ class App extends React.Component {
                                         <Field>
                                             <Label>Name</Label>
                                             <Control>
-                                                <Input placeholder="Name" />
+                                                <Input 
+                                                    placeholder="Name" 
+                                                    name="name" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.name} 
+                                                />
                                             </Control>
                                         </Field>
                                     </Columns.Column>
@@ -257,7 +273,12 @@ class App extends React.Component {
                                         <Field>
                                             <Label>Email</Label>
                                             <Control>
-                                                <Input placeholder="Email" />
+                                                <Input 
+                                                    placeholder="Email" 
+                                                    name="email" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.email}
+                                                />
                                             </Control>
                                         </Field>
                                     </Columns.Column>
@@ -267,7 +288,13 @@ class App extends React.Component {
                                         <Field>
                                             <Label>Message</Label>
                                             <Control>
-                                                <Textarea placeholder="Leave a message" className="has-fixed-size"/>
+                                                <Textarea 
+                                                    placeholder="Leave a message" 
+                                                    name="message" 
+                                                    className="has-fixed-size" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.message}
+                                                />
                                             </Control>
                                         </Field>
                                     </Columns.Column>
@@ -276,7 +303,7 @@ class App extends React.Component {
                                     <Columns.Column className="is-one-third">
                                         <Field>
                                             <Control>
-                                                <Button className="is-medium is-primary is-fullwidth is-outlined" rounded="true">Submit</Button>
+                                                <Button className="is-medium is-primary is-fullwidth is-outlined" rounded={true}>Submit</Button>
                                             </Control>
                                         </Field>
                                     </Columns.Column>
@@ -309,11 +336,7 @@ class App extends React.Component {
                         </Level>
                         <Level className="text-section">
                             <Level.Item textAlignment="centered">
-                                <Content style={{ textAlign: 'center' }}>
-                                    <p>
-                                        <h4>Coded by Andrés Córdoba &copy; 2020.</h4>
-                                    </p>
-                                </Content>
+                                <p>Coded by Andrés Córdoba &copy; 2020.</p>
                             </Level.Item>
                         </Level>
                     </Container>
